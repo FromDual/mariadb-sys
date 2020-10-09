@@ -91,7 +91,7 @@ SELECT LOWER(VARIABLE_NAME) AS Variable_name, VARIABLE_VALUE AS Variable_value, 
 ) UNION ALL (
 SELECT NAME AS Variable_name, COUNT AS Variable_value,
        CONCAT('InnoDB Metrics - ', SUBSYSTEM) AS Type,
-       IF(STATUS = 'enabled', 'YES', 'NO') AS Enabled
+       IF(ENABLED = 1, 'YES', 'NO')  AS Enabled
   FROM information_schema.INNODB_METRICS
   -- Deduplication - some variables exists both in GLOBAL_STATUS and INNODB_METRICS
   -- Keep the one from GLOBAL_STATUS as it is always enabled and it's more likely to be used for existing tools.
